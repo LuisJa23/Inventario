@@ -1,6 +1,7 @@
 package com.inventory.stock.model.sale;
 
 
+import com.inventory.stock.dto.sale.SaleRegisterDTO;
 import com.inventory.stock.model.invoice.Invoice;
 import com.inventory.stock.model.person.Person;
 import com.inventory.stock.model.person.add_ons.UserLogin;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "sale")
@@ -48,4 +50,15 @@ public class Sale {
 
     @OneToOne(mappedBy = "sale")
     private Invoice invoice;
+
+    public Sale(SaleRegisterDTO saleRegisterDTO) {
+        this.saleDetails = new ArrayList<>();
+        this.totalPrice = 0.0;
+        saleRegisterDTO.saleDetails().forEach(detail -> {
+            SaleDetails saleDetail = new SaleDetails(detail, this);
+            this.saleDetails.add(saleDetail);
+            this.totalPrice += saleDetail.getSubTotal();
+        });
+        this.saleDate = LocalDateTime.now();
+    }
 }

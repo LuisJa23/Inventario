@@ -29,6 +29,7 @@ public class Product {
     private String name;
     private String  barCode;
     private Double salePrice;
+    private Integer stock = 0;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<SaleDetails> saleDetails;
@@ -43,6 +44,7 @@ public class Product {
         this.name = productRegisterData.name();
         this.barCode = productRegisterData.barCode();
         this.salePrice = productRegisterData.salePrice();
+        this.stock = productRegisterData.stock();
 
     }
 }

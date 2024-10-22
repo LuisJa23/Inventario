@@ -33,6 +33,7 @@ public class ProductController {
 
 
     @GetMapping
+    @Transactional
     public ResponseEntity<PagedModel<ProductResponseDTO>> getAllProducts(@PageableDefault(size = 50) Pageable pageable){
         var page = productService.getAllProducts(pageable);
         PagedModel<ProductResponseDTO> pagedModel = new PagedModel<>(page);

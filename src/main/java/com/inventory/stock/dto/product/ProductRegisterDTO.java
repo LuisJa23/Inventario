@@ -9,6 +9,8 @@ public record ProductRegisterDTO(
         @NotBlank
         String barCode,
         @NotNull
-        Double salePrice
+        Double salePrice,
+        @NotNull
+        Integer stock
 ) {
 }

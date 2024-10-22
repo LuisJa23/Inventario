@@ -6,11 +6,13 @@ public record ProductResponseDTO(
         Long id,
         String name,
         String barCode,
-        Double salePrice
+        Double salePrice,
+        Integer stock
+
 
 
 ) {
     public ProductResponseDTO(Product product){
-        this(product.getId(), product.getName(), product.getBarCode(), product.getSalePrice());
+        this(product.getId(), product.getName(), product.getBarCode(), product.getSalePrice(), product.getStock());
     }
 }
